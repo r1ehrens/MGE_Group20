@@ -6,6 +6,7 @@ Damit diese Daten nicht mühsam auf der Website des Kantons gesucht werden müss
 ## Funktionen
 - Darstellen der aktuellen Standorte
 - Notification 1x pro Woche
+- Mini Bussenrechner
 
 ## Punkte
 | Aufgabe              		   	   | Punkte |

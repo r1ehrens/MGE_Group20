@@ -4,7 +4,9 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -16,7 +18,7 @@ public class SpeedCameraAdapter extends RecyclerView.Adapter<SpeedCameraViewHold
 
     List<SpeedCamera> speedCameraList;
 
-    public SpeedCameraAdapter(List<SpeedCamera> speedCameraList){
+    public SpeedCameraAdapter(List<SpeedCamera> speedCameraList) {
         this.speedCameraList = speedCameraList;
     }
 
@@ -29,19 +31,28 @@ public class SpeedCameraAdapter extends RecyclerView.Adapter<SpeedCameraViewHold
                 parent,
                 false);
 
-        TextView tvPlace = view.findViewById(R.id.tv_place);
-        TextView tvStreet = view.findViewById(R.id.tv_street);
+        TextView tvPlace = view.findViewById(R.id.tv_speedcamera_place);
+        TextView tvStreet = view.findViewById(R.id.tv_speedcamera_street);
+        ImageView ivShare = view.findViewById(R.id.iv_speedcamera_share);
 
         return new SpeedCameraViewHolder(
                 view,
                 tvPlace,
-                tvStreet);
+                tvStreet,
+                ivShare);
     }
 
     @Override
-    public void onBindViewHolder(SpeedCameraViewHolder holder, int position) {
+    public void onBindViewHolder(SpeedCameraViewHolder holder, final int position) {
         holder.tvPlace.setText(speedCameraList.get(position).getPlace());
         holder.tvStreet.setText(speedCameraList.get(position).getStreet());
+        holder.ivShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(view.getContext(), "tammi siech share: " + position, Toast.LENGTH_SHORT).show();
+            }
+
+        });
     }
 
     @Override

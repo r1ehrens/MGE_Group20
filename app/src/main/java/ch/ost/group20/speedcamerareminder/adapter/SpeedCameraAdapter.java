@@ -1,6 +1,7 @@
 package ch.ost.group20.speedcamerareminder.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,9 +50,18 @@ public class SpeedCameraAdapter extends RecyclerView.Adapter<SpeedCameraViewHold
         holder.ivShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(view.getContext(), "tammi siech share: " + position, Toast.LENGTH_SHORT).show();
-            }
 
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT,  view.getContext().getResources().getString(R.string.speedcamera_share_msg) + "\n"
+                        + speedCameraList.get(position).getPlaceCombined() + "\n"
+                        + speedCameraList.get(position).getStreet());
+                sendIntent.setType("text/plain");
+
+                Intent shareIntent = Intent.createChooser(sendIntent, null);
+                view.getContext().startActivity(shareIntent);
+
+            }
         });
     }
 

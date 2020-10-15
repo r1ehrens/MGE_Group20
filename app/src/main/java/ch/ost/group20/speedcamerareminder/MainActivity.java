@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         List<SpeedCamera> speedCameraList = new ArrayList<>();
         speedCameraList.add(new SpeedCamera("Wangen0", "Rapperswil0", "Bliblauba0"));
         speedCameraList.add(new SpeedCamera("Wangen1", "Rapperswil1", "Bliblauba1"));
-        speedCameraList.add(new SpeedCamera("Wangen2", "Rapperswil2", "Bliblauba2"));
+        speedCameraList.add(new SpeedCamera("Rapperswil2", "Rapperswil2", "Bliblauba2"));
         speedCameraList.add(new SpeedCamera("Wangen3", "Rapperswil3", "Bliblauba3"));
         speedCameraList.add(new SpeedCamera("Wangen4", "Rapperswil4", "Bliblauba4"));
         speedCameraList.add(new SpeedCamera("Wangen5", "Rapperswil5", "Bliblauba5"));

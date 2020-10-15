@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/SpeedCameraReminder.iml" filepath="$PROJECT_DIR$/.idea/modules/SpeedCameraReminder.iml" group="SpeedCameraReminder" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/app.iml" group="SpeedCameraReminder/app" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/SpeedCameraReminder.iml" filepath="$PROJECT_DIR$/.idea/modules/SpeedCameraReminder.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/SpeedCameraReminder.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/SpeedCameraReminder.app.iml" />
     </modules>
   </component>
 </project>

@@ -18,6 +18,8 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -63,9 +65,19 @@ public class MainActivity extends AppCompatActivity {
         speedCameraList.add(new SpeedCamera("Wangen8", "Rapperswil8", "Bliblauba8"));
         speedCameraList.add(new SpeedCamera("Wangen9", "Rapperswil9", "Bliblauba9"));
 
-        SpeedCameraAdapter speedCameraAdapter = new SpeedCameraAdapter(speedCameraList);
-        rvCameraOverview.setAdapter(speedCameraAdapter);
+       // speedCameraList.clear();
+        if (speedCameraList.isEmpty()){
+            ImageView ivEmptyList = findViewById(R.id.iv_empty_list);
+            TextView tvEmptyListMsg = findViewById(R.id.tv_empty_list_msg);
 
+            rvCameraOverview.setVisibility(View.GONE);
+            ivEmptyList.setVisibility(View.VISIBLE);
+            tvEmptyListMsg.setVisibility(View.VISIBLE);
+        } else {
+            SpeedCameraAdapter speedCameraAdapter = new SpeedCameraAdapter(speedCameraList);
+            rvCameraOverview.setAdapter(speedCameraAdapter);
+
+        }
     }
 
     @Override

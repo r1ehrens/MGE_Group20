@@ -8,10 +8,42 @@
     tools:context=".MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_camera_overview"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </androidx.recyclerview.widget.RecyclerView>
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_empty_list"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="48dp"
+            android:contentDescription="@string/empty_list_error_msg"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_mood_bad" />
+
+        <TextView
+            android:id="@+id/tv_empty_list_msg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/empty_list_error_msg"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_empty_list" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_camera_overview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
 </androidx.core.widget.NestedScrollView>

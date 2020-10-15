@@ -44,7 +44,7 @@ public class SpeedCameraAdapter extends RecyclerView.Adapter<SpeedCameraViewHold
 
     @Override
     public void onBindViewHolder(SpeedCameraViewHolder holder, final int position) {
-        holder.tvPlace.setText(speedCameraList.get(position).getPlace());
+        holder.tvPlace.setText(speedCameraList.get(position).getPlaceCombined());
         holder.tvStreet.setText(speedCameraList.get(position).getStreet());
         holder.ivShare.setOnClickListener(new View.OnClickListener() {
             @Override

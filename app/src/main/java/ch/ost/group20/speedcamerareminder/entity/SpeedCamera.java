@@ -45,4 +45,12 @@ public class SpeedCamera {
         this.street = street;
     }
 
+    public String getPlaceCombined(){
+        if(this.congregation.equals(this.place)){
+            return this.congregation;
+        } else {
+            return this.congregation + " - " + this.place;
+        }
+    }
+
 }

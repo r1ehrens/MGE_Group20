@@ -43,7 +43,14 @@
         app:layout_anchorGravity="bottom|end"
         app:srcCompat="@drawable/ic_calculate" />
 
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/swiperefresh_camera_overview"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        >
+
     <include layout="@layout/activity_main_content" />
 
-
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

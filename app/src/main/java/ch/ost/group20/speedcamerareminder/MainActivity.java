@@ -11,6 +11,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import ch.ost.group20.speedcamerareminder.adapter.SpeedCameraAdapter;
 import ch.ost.group20.speedcamerareminder.entity.SpeedCamera;
 import ch.ost.group20.speedcamerareminder.network.APIClient;
@@ -31,10 +32,24 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    RecyclerView rvCameraOverview;
+    SwipeRefreshLayout swipeRefreshLayout;
+    ImageView ivEmptyList;
+    TextView tvEmptyListMsg;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        ivEmptyList = findViewById(R.id.iv_empty_list);
+        tvEmptyListMsg = findViewById(R.id.tv_empty_list_msg);
+
+        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swiperefresh_camera_overview);
+        swipeRefreshLayout.setRefreshing(true);
+
+        rvCameraOverview = findViewById(R.id.rv_camera_overview);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         CollapsingToolbarLayout toolBarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
@@ -49,7 +64,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        RecyclerView rvCameraOverview = findViewById(R.id.rv_camera_overview);
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getDataAndSetupList();
+            }
+        });
+
+
         LinearLayoutManager layoutManager;
         layoutManager = new LinearLayoutManager(this);
         rvCameraOverview.setLayoutManager(layoutManager);
@@ -57,16 +80,27 @@ public class MainActivity extends AppCompatActivity {
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(rvCameraOverview.getContext(), layoutManager.getOrientation());
         rvCameraOverview.addItemDecoration(dividerItemDecoration);
 
+        getDataAndSetupList();
 
+    }
 
-        APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
+    private void getDataAndSetupList(){
+        APIInterface apiInterface = null;
+        if (apiInterface == null){
+            apiInterface = APIClient.getClient().create(APIInterface.class);
+        }
         apiInterface.getSpeedCameras().enqueue(new Callback<List<SpeedCamera>>() {
             @Override
             public void onResponse(Call<List<SpeedCamera>> call, Response<List<SpeedCamera>> response) {
+
                 if (!response.body().isEmpty()){
+                    rvCameraOverview.setVisibility(View.VISIBLE);
+                    ivEmptyList.setVisibility(View.GONE);
+                    tvEmptyListMsg.setVisibility(View.GONE);
+
                     SpeedCameraAdapter speedCameraAdapter = new SpeedCameraAdapter(response.body());
                     rvCameraOverview.setAdapter(speedCameraAdapter);
-
+                    swipeRefreshLayout.setRefreshing(false);
                 } else {
                     onFailure(call, new Throwable("Empty List"));
                 }
@@ -74,12 +108,11 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<SpeedCamera>> call, Throwable t) {
-                ImageView ivEmptyList = findViewById(R.id.iv_empty_list);
-                TextView tvEmptyListMsg = findViewById(R.id.tv_empty_list_msg);
 
                 rvCameraOverview.setVisibility(View.GONE);
                 ivEmptyList.setVisibility(View.VISIBLE);
                 tvEmptyListMsg.setVisibility(View.VISIBLE);
+                swipeRefreshLayout.setRefreshing(false);
             }
         });
     }

@@ -1,13 +1,16 @@
 package ch.ost.group20.speedcamerareminder.adapter;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.util.List;
 
@@ -60,6 +63,34 @@ public class SpeedCameraAdapter extends RecyclerView.Adapter<SpeedCameraViewHold
 
                 Intent shareIntent = Intent.createChooser(sendIntent, null);
                 view.getContext().startActivity(shareIntent);
+
+            }
+        });
+
+        holder.tvStreet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new MaterialAlertDialogBuilder(view.getContext())
+                        .setTitle(speedCameraList.get(position).getStreet() + ", " + speedCameraList.get(position).getPlace())
+                        .setMessage(view.getContext().getResources().getString(R.string.speedcamera_google_maps_msg))
+                        .setPositiveButton(view.getContext().getResources().getString(R.string.ok), new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                Uri gmmIntentUri = Uri.parse("geo:0,0?q=" + speedCameraList.get(position).getStreet() + ", " + speedCameraList.get(position).getPlace());
+                                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                                mapIntent.setPackage("com.google.android.apps.maps");
+                                if (mapIntent.resolveActivity(view.getContext().getPackageManager()) != null) {
+                                    view.getContext().startActivity(mapIntent);
+                                }
+                            }
+                        })
+                        .setNegativeButton(view.getContext().getResources().getString(R.string.cancel), new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.cancel();
+                            }
+                        })
+                        .show();
 
             }
         });

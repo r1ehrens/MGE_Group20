@@ -8,10 +8,20 @@ import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import ch.ost.group20.speedcamerareminder.adapter.SpeedCameraAdapter;
+import ch.ost.group20.speedcamerareminder.entity.SpeedCamera;
 
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,6 +42,30 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        RecyclerView rvCameraOverview = findViewById(R.id.rv_camera_overview);
+        LinearLayoutManager layoutManager;
+        layoutManager = new LinearLayoutManager(this);
+        rvCameraOverview.setLayoutManager(layoutManager);
+
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(rvCameraOverview.getContext(), layoutManager.getOrientation());
+        rvCameraOverview.addItemDecoration(dividerItemDecoration);
+
+        List<SpeedCamera> speedCameraList = new ArrayList<>();
+        speedCameraList.add(new SpeedCamera("Wangen0", "Rapperswil0", "Bliblauba0"));
+        speedCameraList.add(new SpeedCamera("Wangen1", "Rapperswil1", "Bliblauba1"));
+        speedCameraList.add(new SpeedCamera("Wangen2", "Rapperswil2", "Bliblauba2"));
+        speedCameraList.add(new SpeedCamera("Wangen3", "Rapperswil3", "Bliblauba3"));
+        speedCameraList.add(new SpeedCamera("Wangen4", "Rapperswil4", "Bliblauba4"));
+        speedCameraList.add(new SpeedCamera("Wangen5", "Rapperswil5", "Bliblauba5"));
+        speedCameraList.add(new SpeedCamera("Wangen6", "Rapperswil6", "Bliblauba6"));
+        speedCameraList.add(new SpeedCamera("Wangen7", "Rapperswil7", "Bliblauba7"));
+        speedCameraList.add(new SpeedCamera("Wangen8", "Rapperswil8", "Bliblauba8"));
+        speedCameraList.add(new SpeedCamera("Wangen9", "Rapperswil9", "Bliblauba9"));
+
+        SpeedCameraAdapter speedCameraAdapter = new SpeedCameraAdapter(speedCameraList);
+        rvCameraOverview.setAdapter(speedCameraAdapter);
+
     }
 
     @Override
@@ -50,6 +84,8 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+
+            Toast.makeText(getApplicationContext(), "GO TO SETTINGS!", Toast.LENGTH_LONG).show();
             return true;
         }
         return super.onOptionsItemSelected(item);

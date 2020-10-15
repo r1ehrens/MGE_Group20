@@ -49,7 +49,7 @@ public class SpeedCamera {
         if(this.congregation.equals(this.place)){
             return this.congregation;
         } else {
-            return this.congregation + " - " + this.place;
+            return this.place + ", " + this.congregation;
         }
     }
 

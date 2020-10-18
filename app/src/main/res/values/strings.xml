@@ -90,4 +90,20 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="action_settings">Settings</string>
+    <string-array name="roadTypeArray">
+        <item>Innerorts</item>
+        <item>Ausserorts</item>
+        <item>Autobahn</item>
+    </string-array>
+    <string-array name="tempoLimits">
+        <item>30</item>
+        <item>50</item>
+        <item>80</item>
+        <item>120</item>
+    </string-array>
+
+    <string name="road_text_string">Angaben zum Ort:</string>
+    <string name="tempo_effective_string">Ihr Tempo:</string>
+    <string name="tempo_limit_string">Max. Tempo:</string>
+    <string name="unit_string">km/h</string>
 </resources>

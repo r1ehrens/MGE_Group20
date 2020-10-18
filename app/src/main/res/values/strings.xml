@@ -106,4 +106,8 @@
     <string name="tempo_effective_string">Ihr Tempo:</string>
     <string name="tempo_limit_string">Max. Tempo:</string>
     <string name="unit_string">km/h</string>
+    <string name="fine_text">Busse:</string>
+    <string name="currency_unit">CHF</string>
+    <string name="addition_description_text">Zusätzliches:</string>
+    <string name="addition_text">Verzeigung</string>
 </resources>

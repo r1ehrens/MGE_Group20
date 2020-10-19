@@ -5,11 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-<<<<<<< HEAD:app/src/main/res/layout/activity_main.xml
-    tools:context=".MainActivity">
-=======
     tools:context=".SpeedingFineCalculator">
->>>>>>> feature-RE:app/src/main/res/layout/activity_speeding_fine_calculator.xml
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar"
@@ -38,27 +34,6 @@
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
-<<<<<<< HEAD:app/src/main/res/layout/activity_main.xml
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/fab_margin"
-        app:layout_anchor="@id/app_bar"
-        app:layout_anchorGravity="bottom|end"
-        app:srcCompat="@drawable/ic_calculate" />
-
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/swiperefresh_camera_overview"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        >
-
-    <include layout="@layout/activity_main_content" />
-=======
     <include layout="@layout/activity_speeding_fine_calculator_content"/>
->>>>>>> feature-RE:app/src/main/res/layout/activity_speeding_fine_calculator.xml
 
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,6 +1,11 @@
 package ch.ost.group20.speedcamerareminder;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 
 import com.google.android.material.appbar.CollapsingToolbarLayout;
@@ -9,6 +14,9 @@ import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
+import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -42,6 +50,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Preference auslesen
+        /*PreferenceManager.setDefaultValues(this, R.xml.root_preferences, false);
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        Boolean switchNotification = sharedPref.getBoolean(SettingsActivity.KEY_NOTIFICATION_SWITCH, false);
+
+        System.out.println(switchNotification);*/
+
 
         ivEmptyList = findViewById(R.id.iv_empty_list);
         tvEmptyListMsg = findViewById(R.id.tv_empty_list_msg);
@@ -84,7 +100,6 @@ public class MainActivity extends AppCompatActivity {
         rvCameraOverview.addItemDecoration(dividerItemDecoration);
 
         getDataAndSetupList();
-
     }
 
     private void getDataAndSetupList(){
@@ -136,8 +151,7 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-
-            Toast.makeText(getApplicationContext(), "GO TO SETTINGS!", Toast.LENGTH_LONG).show();
+            startActivity(new Intent(this, SettingsActivity.class));
             return true;
         }
         return super.onOptionsItemSelected(item);

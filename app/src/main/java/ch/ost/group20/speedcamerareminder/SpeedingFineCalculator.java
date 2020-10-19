@@ -1,5 +1,6 @@
 package ch.ost.group20.speedcamerareminder;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -15,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class SpeedingFineCalculator extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -113,6 +115,16 @@ public class SpeedingFineCalculator extends AppCompatActivity implements Adapter
         roadTypeSpinner.setAdapter(roadTypeAdapter);
         tempoLimitAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         tempoLimitSpinner.setAdapter(tempoLimitAdapter);
+
+        Intent intentList = new Intent(this, MainActivity.class);
+
+        FloatingActionButton fabList = (FloatingActionButton) findViewById(R.id.fabList);
+        fabList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(intentList);
+            }
+        });
     }
 
     @Override

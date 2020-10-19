@@ -1,5 +1,6 @@
 package ch.ost.group20.speedcamerareminder;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.appbar.CollapsingToolbarLayout;
@@ -55,12 +56,14 @@ public class MainActivity extends AppCompatActivity {
         CollapsingToolbarLayout toolBarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
         toolBarLayout.setTitle(getTitle());
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+
+        Intent intentCalculator = new Intent(this, SpeedingFineCalculator.class);
+
+        FloatingActionButton fabCalculator = (FloatingActionButton) findViewById(R.id.fabCalculator);
+        fabCalculator.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                startActivity(intentCalculator);
             }
         });
 

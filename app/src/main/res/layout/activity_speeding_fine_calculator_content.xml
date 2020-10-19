@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".SpeedingFineCalculator"
+    tools:showIn="@layout/activity_speeding_fine_calculator">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/road_text_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/road_text_string"
+            android:textSize="20sp"
+            android:labelFor="@id/road_type_spinner"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <Spinner
+            android:id="@+id/road_type_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="16dp"
+            app:layout_constraintBaseline_toBaselineOf="@id/road_text_spinner"
+            app:layout_constraintRight_toRightOf="parent"/>
+
+        <TextView
+            android:id="@+id/tempo_effective_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/tempo_effective_string"
+            android:textSize="20sp"
+            android:labelFor="@id/tempo_effective_input"
+            app:layout_constraintLeft_toLeftOf="@id/road_text_spinner"
+            app:layout_constraintTop_toBottomOf="@id/road_text_spinner"/>
+
+        <EditText
+            android:id="@+id/tempo_effective_input"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:inputType="number"
+            app:layout_constraintBaseline_toBaselineOf="@id/tempo_effective_text"
+            app:layout_constraintLeft_toLeftOf="@id/road_type_spinner"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/unit_string"
+            android:textSize="20sp"
+            app:layout_constraintBaseline_toBaselineOf="@id/tempo_effective_text"
+            app:layout_constraintLeft_toLeftOf="@id/tempo_limit_unit_display"/>
+
+        <TextView
+            android:id="@+id/tempo_limit_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/tempo_limit_string"
+            android:textSize="20sp"
+            android:labelFor="@id/tempo_limit_spinner"
+            app:layout_constraintLeft_toLeftOf="@id/tempo_effective_text"
+            app:layout_constraintTop_toBottomOf="@id/tempo_effective_text" />
+
+        <Spinner
+            android:id="@+id/tempo_limit_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            app:layout_constraintBaseline_toBaselineOf="@id/tempo_limit_text"
+            app:layout_constraintLeft_toLeftOf="@id/road_type_spinner"/>
+
+        <TextView
+            android:id="@+id/tempo_limit_unit_display"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="@string/unit_string"
+            app:layout_constraintBaseline_toBaselineOf="@id/tempo_limit_text"
+            app:layout_constraintLeft_toRightOf="@id/tempo_limit_spinner"/>
+
+        <Button
+            android:id="@+id/calculate_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Berechnen"
+            android:layout_marginTop="16dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tempo_limit_spinner" />
+
+        <TextView
+            android:id="@+id/fine_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/fine_text"
+            android:textSize="20sp"
+            android:visibility="invisible"
+            app:layout_constraintLeft_toLeftOf="@id/tempo_effective_text"
+            app:layout_constraintTop_toBottomOf="@id/calculate_button"/>
+
+        <TextView
+            android:id="@+id/fine_output"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="120"
+            android:textSize="20sp"
+            android:visibility="invisible"
+            app:layout_constraintLeft_toLeftOf="@id/tempo_effective_input"
+            app:layout_constraintBaseline_toBaselineOf="@id/fine_description" />
+
+        <TextView
+            android:id="@+id/fine_currency"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/currency_unit"
+            android:textSize="20sp"
+            android:visibility="invisible"
+            app:layout_constraintLeft_toLeftOf="@id/tempo_limit_unit_display"
+            app:layout_constraintBaseline_toBaselineOf="@id/fine_description"/>
+
+        <TextView
+            android:id="@+id/addition_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:visibility="invisible"
+            app:layout_constraintLeft_toLeftOf="@id/tempo_effective_input"
+            app:layout_constraintTop_toBottomOf="@id/fine_description"/>
+
+        <TextView
+            android:id="@+id/additional_information"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="16sp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="8dp"
+            android:visibility="invisible"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/addition_text"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
+
+

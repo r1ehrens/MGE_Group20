@@ -7,4 +7,26 @@
     <string name="speedcamera_google_maps_msg">In Google Maps anzeigen?</string>
     <string name="ok">OK</string>
     <string name="cancel">Abbrechen</string>
+
+    <string-array name="roadTypeArray">
+        <item>Innerorts</item>
+        <item>Ausserorts</item>
+        <item>Autobahn</item>
+    </string-array>
+    <string-array name="tempoLimits">
+        <item>30</item>
+        <item>50</item>
+        <item>80</item>
+        <item>120</item>
+    </string-array>
+
+    <string name="road_text_string">Angaben zum Ort:</string>
+    <string name="tempo_effective_string">Ihr Tempo:</string>
+    <string name="tempo_limit_string">Signalisiertes Tempo:</string>
+    <string name="unit_string">km/h</string>
+    <string name="fine_text">Busse:</string>
+    <string name="currency_unit">CHF</string>
+    <string name="speedErrorMessage">Eingabe muss zwischen 0 und 500 sein!</string>
+    <string name="verzeigung">+ Verzeigung</string>
+    <string name="raserdelikt">+ Raserdelikt</string>
 </resources>

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.NavUtils;
 
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -47,11 +49,7 @@ public class SpeedingFineCalculator extends AppCompatActivity implements Adapter
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_speeding_fine_calculator);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        CollapsingToolbarLayout toolBarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
-        toolBarLayout.setTitle(getTitle());
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         fineOutput = findViewById(R.id.fine_output);
         additionalText = findViewById(R.id.addition_text);
@@ -116,15 +114,7 @@ public class SpeedingFineCalculator extends AppCompatActivity implements Adapter
         tempoLimitAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         tempoLimitSpinner.setAdapter(tempoLimitAdapter);
 
-        Intent intentList = new Intent(this, MainActivity.class);
-
-        FloatingActionButton fabList = (FloatingActionButton) findViewById(R.id.fabList);
-        fabList.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(intentList);
-            }
-        });
+        //Intent intentList = new Intent(this, MainActivity.class);
     }
 
     @Override
@@ -262,6 +252,17 @@ public class SpeedingFineCalculator extends AppCompatActivity implements Adapter
         additionalText.setVisibility(View.VISIBLE);
         if(additionalText.getText() == getString(R.string.raserdelikt)){
             additionalInformation.setVisibility(View.VISIBLE);
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 }

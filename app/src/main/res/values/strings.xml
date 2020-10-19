@@ -29,4 +29,5 @@
     <string name="speedErrorMessage">Eingabe muss zwischen 0 und 500 sein!</string>
     <string name="verzeigung">+ Verzeigung</string>
     <string name="raserdelikt">+ Raserdelikt</string>
+    <string name="buttonText">Berechnen</string>
 </resources>

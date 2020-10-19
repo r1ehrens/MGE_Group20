@@ -1,48 +1,156 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    tools:context=".SpeedingFineCalculator">
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".SpeedingFineCalculator"
+    tools:showIn="@layout/activity_speeding_fine_calculator">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/app_bar"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/app_bar_height"
-        android:fitsSystemWindows="true"
-        android:theme="@style/AppTheme.AppBarOverlay">
-
-        <com.google.android.material.appbar.CollapsingToolbarLayout
-            android:id="@+id/toolbar_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/tachometer_audi"
-            android:fitsSystemWindows="true"
-            app:contentScrim="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:toolbarId="@+id/toolbar">
-
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="pin"
-                app:popupTheme="@style/AppTheme.PopupOverlay" />
-
-        </com.google.android.material.appbar.CollapsingToolbarLayout>
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabList"
+    <TextView
+        android:id="@+id/road_text_spinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/fab_margin"
-        app:layout_anchor="@id/app_bar"
-        app:layout_anchorGravity="bottom|end"
-        app:srcCompat="@drawable/ic_list" />
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="56dp"
+        android:text="@string/road_text_string"
+        android:textSize="20sp"
+        android:labelFor="@id/road_type_spinner"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
-    <include layout="@layout/activity_speeding_fine_calculator_content"/>
+    <Spinner
+        android:id="@+id/road_type_spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        app:layout_constraintStart_toEndOf="@+id/road_text_spinner"
+        app:layout_constraintTop_toTopOf="@+id/road_text_spinner" />
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+    <TextView
+        android:id="@+id/tempo_effective_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:labelFor="@id/tempo_effective_input"
+        android:text="@string/tempo_effective_string"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="@id/road_text_spinner"
+        app:layout_constraintStart_toStartOf="@+id/road_text_spinner"
+        app:layout_constraintTop_toBottomOf="@id/road_text_spinner" />
+
+    <EditText
+        android:id="@+id/tempo_effective_input"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        app:layout_constraintStart_toStartOf="@+id/road_type_spinner"
+        app:layout_constraintTop_toTopOf="@+id/tempo_effective_text" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/unit_string"
+        android:textSize="20sp"
+        app:layout_constraintBaseline_toBaselineOf="@id/tempo_effective_text"
+        app:layout_constraintLeft_toLeftOf="@id/tempo_limit_unit_display"/>
+
+    <TextView
+        android:id="@+id/tempo_limit_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:labelFor="@id/tempo_limit_spinner"
+        android:text="@string/tempo_limit_string"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="@id/tempo_effective_text"
+        app:layout_constraintStart_toStartOf="@+id/road_text_spinner"
+        app:layout_constraintTop_toBottomOf="@id/tempo_effective_text" />
+
+    <Spinner
+        android:id="@+id/tempo_limit_spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@+id/road_type_spinner"
+        app:layout_constraintTop_toTopOf="@+id/tempo_limit_text" />
+
+    <TextView
+        android:id="@+id/tempo_limit_unit_display"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:text="@string/unit_string"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toRightOf="@id/tempo_limit_spinner"
+        app:layout_constraintTop_toTopOf="@+id/tempo_limit_spinner" />
+
+    <Button
+        android:id="@+id/calculate_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:backgroundTint="@color/colorSecondary"
+        android:text="@string/buttonText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tempo_limit_text" />
+
+    <TextView
+        android:id="@+id/fine_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/fine_text"
+        android:textSize="20sp"
+        android:visibility="invisible"
+        app:layout_constraintLeft_toLeftOf="@id/tempo_effective_text"
+        app:layout_constraintStart_toStartOf="@+id/road_text_spinner"
+        app:layout_constraintTop_toBottomOf="@id/calculate_button" />
+
+    <TextView
+        android:id="@+id/fine_output"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="@+id/road_type_spinner"
+        app:layout_constraintTop_toTopOf="@+id/fine_description" />
+
+    <TextView
+        android:id="@+id/fine_currency"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/currency_unit"
+        android:textSize="20sp"
+        android:visibility="invisible"
+        app:layout_constraintLeft_toLeftOf="@id/tempo_limit_unit_display"
+        app:layout_constraintTop_toTopOf="@+id/fine_description" />
+
+    <TextView
+        android:id="@+id/addition_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:visibility="invisible"
+        app:layout_constraintLeft_toLeftOf="@id/tempo_effective_input"
+        app:layout_constraintStart_toStartOf="@+id/road_type_spinner"
+        app:layout_constraintTop_toBottomOf="@+id/fine_output" />
+
+    <TextView
+        android:id="@+id/additional_information"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:textSize="16sp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/fine_description"
+        app:layout_constraintTop_toBottomOf="@+id/fine_description" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+

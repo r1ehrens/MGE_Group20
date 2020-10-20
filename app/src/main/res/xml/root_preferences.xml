@@ -5,8 +5,27 @@
 
         <SwitchPreferenceCompat
             android:defaultValue="true"
-            android:key="@string/notification_key"
-            android:title="@string/notification_title" />
+            android:key="@string/notification_enabled_key"
+            android:title="@string/notification_enabled_title" />
+
+        <MultiSelectListPreference
+            android:key="@string/notification_frequency_day_key"
+            android:title="@string/notification_frequency_day_title"
+            android:dependency="@string/notification_enabled_key"
+            android:entries="@array/weekdays"
+            android:entryValues="@array/weekdays"
+            android:summary="@string/notification_frequency_day_description"
+            android:icon="@drawable/ic_date"
+            />
+
+
+        <ch.ost.group20.speedcamerareminder.timepicker.TimePreference
+            android:key="@string/notification_frequency_time_key"
+            android:title="@string/notification_frequency_time_title"
+            android:defaultValue="07:00"
+            android:dependency="@string/notification_enabled_key"
+            android:summary="@string/notification_frequency_time_description"
+            android:icon="@drawable/ic_time"/>
 
     </PreferenceCategory>
 </PreferenceScreen>

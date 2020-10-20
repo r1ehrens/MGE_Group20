@@ -24,6 +24,15 @@
 
     <!-- Preference Titles -->
     <string name="notification_header">Notification</string>
-    <string name="notification_key">notification_switch_key</string>
-    <string name="notification_title">Mitteilungen erlauben</string>
+    <string name="notification_enabled_key">notification_enabled</string>
+    <string name="notification_enabled_title">Erinnerung aktivieren</string>
+
+    <string name="notification_frequency_day_key">notification_frequency_day</string>
+    <string name="notification_frequency_day_title">Wochentag</string>
+    <string name="notification_frequency_day_description">Wochentag wenn Erinnerung angezeit wird</string>
+
+    <string name="notification_frequency_time_key">notification_frequency_time</string>
+    <string name="notification_frequency_time_title">Zeit</string>
+    <string name="notification_frequency_time_description">Uhrzeit wenn Erinnerung angezeit wird</string>
+
 </resources>

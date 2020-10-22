@@ -1,22 +1,20 @@
 package ch.ost.group20.speedcamerareminder;
 
-import android.app.Notification;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
+
+import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
-import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -29,16 +27,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import java.util.ArrayList;
-import java.util.List;
-
 public class MainActivity extends AppCompatActivity {
 
     RecyclerView rvCameraOverview;
@@ -50,14 +38,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        //Preference auslesen
-        /*PreferenceManager.setDefaultValues(this, R.xml.root_preferences, false);
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-        Boolean switchNotification = sharedPref.getBoolean(SettingsActivity.KEY_NOTIFICATION_SWITCH, false);
-
-        System.out.println(switchNotification);*/
-
 
         ivEmptyList = findViewById(R.id.iv_empty_list);
         tvEmptyListMsg = findViewById(R.id.tv_empty_list_msg);
@@ -102,16 +82,16 @@ public class MainActivity extends AppCompatActivity {
         getDataAndSetupList();
     }
 
-    private void getDataAndSetupList(){
+    private void getDataAndSetupList() {
         APIInterface apiInterface = null;
-        if (apiInterface == null){
+        if (apiInterface == null) {
             apiInterface = APIClient.getClient().create(APIInterface.class);
         }
         apiInterface.getSpeedCameras().enqueue(new Callback<List<SpeedCamera>>() {
             @Override
             public void onResponse(Call<List<SpeedCamera>> call, Response<List<SpeedCamera>> response) {
 
-                if (!response.body().isEmpty()){
+                if (!response.body().isEmpty()) {
                     rvCameraOverview.setVisibility(View.VISIBLE);
                     ivEmptyList.setVisibility(View.GONE);
                     tvEmptyListMsg.setVisibility(View.GONE);

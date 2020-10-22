@@ -2,7 +2,7 @@
     <string name="app_name">SpeedCameraReminder</string>
     <string name="calculator_title">Rechner</string>
     <string name="overview_title">Messanlagen</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Einstellungen</string>
     <string name="empty_list_error_msg">Die Liste konnte nicht geladen werden…</string>
     <string name="speedcamera_share_msg">Semistationäre Messanlage:</string>
     <string name="speedcamera_google_maps_msg">In Google Maps anzeigen?</string>
@@ -23,6 +23,14 @@
     <string name="title_activity_settings">SettingsActivity</string>
 
     <!-- Preference Titles -->
+    <string name="preferences_default_file">ch.ost.group20.speedcamerareminder_preferences</string>
+    <string name="notification_intent_is_config">notification_first_time</string>
+
+    <string name="notification_title">Erinnerung</string>
+    <string name="notification_text">Es ist Zeit die Radarliste anzuschauen!</string>
+    <string name="notification_channel">notification_channel</string>
+    <string name="notification_channel_description">Radar Erinnerungen</string>
+
     <string name="notification_header">Notification</string>
     <string name="notification_enabled_key">notification_enabled</string>
     <string name="notification_enabled_title">Erinnerung aktivieren</string>
@@ -34,5 +42,6 @@
     <string name="notification_frequency_time_key">notification_frequency_time</string>
     <string name="notification_frequency_time_title">Zeit</string>
     <string name="notification_frequency_time_description">Uhrzeit wenn Erinnerung angezeit wird</string>
+    <string name="notification_frequency_time_default">07:00</string>
 
 </resources>

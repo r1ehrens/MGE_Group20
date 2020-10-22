@@ -1,6 +1,5 @@
 package ch.ost.group20.speedcamerareminder;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -14,18 +13,15 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.NavUtils;
-
-import com.google.android.material.appbar.CollapsingToolbarLayout;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class SpeedingFineCalculator extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private final static int MAXIMUM_SPEED_LIMIT = 500;
     private final static int SPEED_MARGE = 5;
 
-    enum RoadTypes {INNERORTS, AUSSERORTS, AUTOBAHN};
+    enum RoadTypes {INNERORTS, AUSSERORTS, AUTOBAHN}
+
+    ;
     private int tempoLimitInput;
     private RoadTypes roadTypeInput;
     private int speedInput;
@@ -60,20 +56,22 @@ public class SpeedingFineCalculator extends AppCompatActivity implements Adapter
         tempoEditText = findViewById(R.id.tempo_effective_input);
         tempoEditText.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
 
             @Override
             public void afterTextChanged(Editable s) {
-                if(s.length() < 1){
+                if (s.length() < 1) {
                     return;
                 }
                 int value = Integer.parseInt(s.toString());
-                if(value < 0 || value > MAXIMUM_SPEED_LIMIT){
+                if (value < 0 || value > MAXIMUM_SPEED_LIMIT) {
                     tempoEditText.setError(getString(R.string.speedErrorMessage));
-                }else{
+                } else {
                     speedInput = value;
                 }
             }
@@ -86,12 +84,11 @@ public class SpeedingFineCalculator extends AppCompatActivity implements Adapter
                 int speedDifference = speedInput - SPEED_MARGE - tempoLimitInput;
                 fineOutput.setText("");
                 additionalText.setText("");
-                if(speedDifference < 0){
+                if (speedDifference < 0) {
                     hideResults();
                     additionalInformation.setVisibility(View.VISIBLE);
                     additionalInformation.setText("Es liegt keine Geschwindigkeitsüberschreitung vor.");
-                }
-                else {
+                } else {
                     int fine = getCalculatedFine(speedDifference);
                     fineOutput.setText(String.valueOf(fine));
                     displayResults();
@@ -101,11 +98,11 @@ public class SpeedingFineCalculator extends AppCompatActivity implements Adapter
         });
 
 
-        roadTypeSpinner = (Spinner)findViewById(R.id.road_type_spinner);
+        roadTypeSpinner = (Spinner) findViewById(R.id.road_type_spinner);
         roadTypeSpinner.setOnItemSelectedListener(this);
         roadTypeAdapter = ArrayAdapter.createFromResource(this, R.array.roadTypeArray, android.R.layout.simple_spinner_item);
 
-        tempoLimitSpinner = (Spinner)findViewById(R.id.tempo_limit_spinner);
+        tempoLimitSpinner = (Spinner) findViewById(R.id.tempo_limit_spinner);
         tempoLimitSpinner.setOnItemSelectedListener(this);
         tempoLimitAdapter = ArrayAdapter.createFromResource(this, R.array.tempoLimits, android.R.layout.simple_spinner_item);
 
@@ -119,16 +116,16 @@ public class SpeedingFineCalculator extends AppCompatActivity implements Adapter
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        if(parent.getId() == R.id.road_type_spinner) {
+        if (parent.getId() == R.id.road_type_spinner) {
             roadTypeInput = RoadTypes.valueOf(parent.getItemAtPosition(position).toString().toUpperCase());
-            if(roadTypeInput == RoadTypes.INNERORTS){
+            if (roadTypeInput == RoadTypes.INNERORTS) {
                 tempoLimitSpinner.setSelection(tempoLimitAdapter.getPosition("50"));
-            } else if(roadTypeInput == RoadTypes.AUSSERORTS){
+            } else if (roadTypeInput == RoadTypes.AUSSERORTS) {
                 tempoLimitSpinner.setSelection(tempoLimitAdapter.getPosition("80"));
-            }else{
+            } else {
                 tempoLimitSpinner.setSelection(tempoLimitAdapter.getPosition("120"));
             }
-        }else if(parent.getId() == R.id.tempo_limit_spinner){
+        } else if (parent.getId() == R.id.tempo_limit_spinner) {
             tempoLimitInput = Integer.parseInt(parent.getItemAtPosition(position).toString());
         }
     }
@@ -138,80 +135,80 @@ public class SpeedingFineCalculator extends AppCompatActivity implements Adapter
 
     }
 
-    private int getCalculatedFine(int speedDifference){
-        if(speedDifference <= 5){
-            if(roadTypeInput == RoadTypes.INNERORTS){
+    private int getCalculatedFine(int speedDifference) {
+        if (speedDifference <= 5) {
+            if (roadTypeInput == RoadTypes.INNERORTS) {
                 return 40;
-            }else if(roadTypeInput == RoadTypes.AUSSERORTS){
+            } else if (roadTypeInput == RoadTypes.AUSSERORTS) {
                 return 40;
-            } else if(roadTypeInput == RoadTypes.AUTOBAHN){
+            } else if (roadTypeInput == RoadTypes.AUTOBAHN) {
                 return 20;
             }
-        }else if(speedDifference <= 10){
-            if(roadTypeInput == RoadTypes.INNERORTS){
+        } else if (speedDifference <= 10) {
+            if (roadTypeInput == RoadTypes.INNERORTS) {
                 return 120;
-            }else if(roadTypeInput == RoadTypes.AUSSERORTS){
+            } else if (roadTypeInput == RoadTypes.AUSSERORTS) {
                 return 100;
-            } else if(roadTypeInput == RoadTypes.AUTOBAHN){
+            } else if (roadTypeInput == RoadTypes.AUTOBAHN) {
                 return 60;
             }
-        }else if(speedDifference <= 15){
-            if(roadTypeInput == RoadTypes.INNERORTS){
+        } else if (speedDifference <= 15) {
+            if (roadTypeInput == RoadTypes.INNERORTS) {
                 return 250;
-            }else if(roadTypeInput == RoadTypes.AUSSERORTS){
+            } else if (roadTypeInput == RoadTypes.AUSSERORTS) {
                 return 160;
-            } else if(roadTypeInput == RoadTypes.AUTOBAHN){
+            } else if (roadTypeInput == RoadTypes.AUTOBAHN) {
                 return 120;
             }
-        }else if(speedDifference <= 20){
-            if(roadTypeInput == RoadTypes.INNERORTS){
+        } else if (speedDifference <= 20) {
+            if (roadTypeInput == RoadTypes.INNERORTS) {
                 additionalText.setText(R.string.verzeigung);
                 return 250;
-            }else if(roadTypeInput == RoadTypes.AUSSERORTS){
+            } else if (roadTypeInput == RoadTypes.AUSSERORTS) {
                 return 240;
-            } else if(roadTypeInput == RoadTypes.AUTOBAHN){
+            } else if (roadTypeInput == RoadTypes.AUTOBAHN) {
                 return 180;
             }
-        }else if(speedDifference <= 25){
-            if(roadTypeInput == RoadTypes.INNERORTS){
+        } else if (speedDifference <= 25) {
+            if (roadTypeInput == RoadTypes.INNERORTS) {
                 additionalText.setText(R.string.verzeigung);
                 return 250;
-            }else if(roadTypeInput == RoadTypes.AUSSERORTS){
+            } else if (roadTypeInput == RoadTypes.AUSSERORTS) {
                 additionalText.setText(R.string.verzeigung);
                 return 240;
-            } else if(roadTypeInput == RoadTypes.AUTOBAHN){
+            } else if (roadTypeInput == RoadTypes.AUTOBAHN) {
                 return 260;
             }
-        }else if(speedDifference < 40){
-            if(roadTypeInput == RoadTypes.INNERORTS){
+        } else if (speedDifference < 40) {
+            if (roadTypeInput == RoadTypes.INNERORTS) {
                 additionalText.setText(R.string.verzeigung);
-            return 250;
-        }else if(roadTypeInput == RoadTypes.AUSSERORTS){
+                return 250;
+            } else if (roadTypeInput == RoadTypes.AUSSERORTS) {
                 additionalText.setText(R.string.verzeigung);
-            return 240;
-        } else if(roadTypeInput == RoadTypes.AUTOBAHN){
+                return 240;
+            } else if (roadTypeInput == RoadTypes.AUTOBAHN) {
                 additionalText.setText(R.string.verzeigung);
-            return 260;
-        }
-        }else if(speedDifference < 80){
-            if(roadTypeInput == RoadTypes.INNERORTS){
-                additionalText.setText(R.string.raserdelikt);
-            return 250;
-        }else if(roadTypeInput == RoadTypes.AUSSERORTS){
-                additionalText.setText(R.string.raserdelikt);
-            return 240;
-        } else if(roadTypeInput == RoadTypes.AUTOBAHN){
-                additionalText.setText(R.string.verzeigung);
-            return 260;
-        }
-        }else if(speedDifference >= 80){
-            if(roadTypeInput == RoadTypes.INNERORTS){
+                return 260;
+            }
+        } else if (speedDifference < 80) {
+            if (roadTypeInput == RoadTypes.INNERORTS) {
                 additionalText.setText(R.string.raserdelikt);
                 return 250;
-            }else if(roadTypeInput == RoadTypes.AUSSERORTS){
+            } else if (roadTypeInput == RoadTypes.AUSSERORTS) {
                 additionalText.setText(R.string.raserdelikt);
                 return 240;
-            } else if(roadTypeInput == RoadTypes.AUTOBAHN){
+            } else if (roadTypeInput == RoadTypes.AUTOBAHN) {
+                additionalText.setText(R.string.verzeigung);
+                return 260;
+            }
+        } else if (speedDifference >= 80) {
+            if (roadTypeInput == RoadTypes.INNERORTS) {
+                additionalText.setText(R.string.raserdelikt);
+                return 250;
+            } else if (roadTypeInput == RoadTypes.AUSSERORTS) {
+                additionalText.setText(R.string.raserdelikt);
+                return 240;
+            } else if (roadTypeInput == RoadTypes.AUTOBAHN) {
                 additionalText.setText(R.string.raserdelikt);
                 return 260;
             }
@@ -219,25 +216,25 @@ public class SpeedingFineCalculator extends AppCompatActivity implements Adapter
         return -1;
     }
 
-    private void setRacingInformation(){
-        if(additionalText.getText() != getString(R.string.raserdelikt)){
+    private void setRacingInformation() {
+        if (additionalText.getText() != getString(R.string.raserdelikt)) {
             additionalInformation.setText("");
             return;
         }
-        if(tempoLimitInput == 30){
+        if (tempoLimitInput == 30) {
             additionalInformation.setText("*In der 30er-Zone gilt man ab einer Geschwindigkeit von 70 km/h als Raser!");
-        }else if(roadTypeInput == RoadTypes.INNERORTS){
+        } else if (roadTypeInput == RoadTypes.INNERORTS) {
             additionalInformation.setText("*In der 50er-Zone gilt man ab einer Geschwindigkeit von 100 km/h als Raser!");
-        }else if(roadTypeInput == RoadTypes.AUSSERORTS){
+        } else if (roadTypeInput == RoadTypes.AUSSERORTS) {
             additionalInformation.setText("*In der 80er-Zone gilt man ab einer Geschwindigkeit von 140 km/h als Raser!");
-        }else if(roadTypeInput == RoadTypes.AUTOBAHN){
+        } else if (roadTypeInput == RoadTypes.AUTOBAHN) {
             additionalInformation.setText("*In der 120er-Zone gilt man ab einer Geschwindigkeit von 200 km/h als Raser!");
-        }else{
+        } else {
             additionalInformation.setText("");
         }
     }
 
-    private void hideResults(){
+    private void hideResults() {
         additionalText.setVisibility(View.INVISIBLE);
         fineOutput.setVisibility(View.INVISIBLE);
         additionalInformation.setVisibility(View.INVISIBLE);
@@ -245,12 +242,12 @@ public class SpeedingFineCalculator extends AppCompatActivity implements Adapter
         fineDescription.setVisibility(View.INVISIBLE);
     }
 
-    private void displayResults(){
+    private void displayResults() {
         fineOutput.setVisibility(View.VISIBLE);
         fineCurrency.setVisibility(View.VISIBLE);
         fineDescription.setVisibility(View.VISIBLE);
         additionalText.setVisibility(View.VISIBLE);
-        if(additionalText.getText() == getString(R.string.raserdelikt)){
+        if (additionalText.getText() == getString(R.string.raserdelikt)) {
             additionalInformation.setVisibility(View.VISIBLE);
         }
     }

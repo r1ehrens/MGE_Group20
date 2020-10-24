@@ -91,15 +91,19 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<SpeedCamera>> call, Response<List<SpeedCamera>> response) {
 
-                if (!response.body().isEmpty()) {
-                    rvCameraOverview.setVisibility(View.VISIBLE);
-                    ivEmptyList.setVisibility(View.GONE);
-                    tvEmptyListMsg.setVisibility(View.GONE);
+                try {
+                    if (!response.body().isEmpty()) {
+                        rvCameraOverview.setVisibility(View.VISIBLE);
+                        ivEmptyList.setVisibility(View.GONE);
+                        tvEmptyListMsg.setVisibility(View.GONE);
 
-                    SpeedCameraAdapter speedCameraAdapter = new SpeedCameraAdapter(response.body());
-                    rvCameraOverview.setAdapter(speedCameraAdapter);
-                    swipeRefreshLayout.setRefreshing(false);
-                } else {
+                        SpeedCameraAdapter speedCameraAdapter = new SpeedCameraAdapter(response.body());
+                        rvCameraOverview.setAdapter(speedCameraAdapter);
+                        swipeRefreshLayout.setRefreshing(false);
+                    } else {
+                        onFailure(call, new Throwable("Empty List"));
+                    }
+                } catch (Exception ex){
                     onFailure(call, new Throwable("Empty List"));
                 }
             }

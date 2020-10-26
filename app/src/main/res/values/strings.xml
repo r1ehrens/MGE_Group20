@@ -10,9 +10,10 @@
     <string name="cancel">Abbrechen</string>
 
 
-    <string name="road_text_string">Angaben zum Ort:</string>
-    <string name="tempo_effective_string">Ihr Tempo:</string>
-    <string name="tempo_limit_string">Signalisiertes Tempo:</string>
+    <string name="road_text_string">Ort</string>
+    <string name="tempo_effective_string">Tacho</string>
+    <string name="tempo_limit_string">Signalisiert</string>
+    <string name="speed_string">Geschwindigkeit</string>
     <string name="unit_string">km/h</string>
     <string name="fine_text">Busse:</string>
     <string name="currency_unit">CHF</string>

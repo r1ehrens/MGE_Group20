@@ -19,9 +19,8 @@ public class SpeedingFineCalculator extends AppCompatActivity implements Adapter
     private final static int MAXIMUM_SPEED_LIMIT = 500;
     private final static int SPEED_MARGE = 5;
 
-    enum RoadTypes {INNERORTS, AUSSERORTS, AUTOBAHN}
+    enum RoadTypes {INNERORTS, AUSSERORTS, AUTOBAHN};
 
-    ;
     private int tempoLimitInput;
     private RoadTypes roadTypeInput;
     private int speedInput;
@@ -110,8 +109,6 @@ public class SpeedingFineCalculator extends AppCompatActivity implements Adapter
         roadTypeSpinner.setAdapter(roadTypeAdapter);
         tempoLimitAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         tempoLimitSpinner.setAdapter(tempoLimitAdapter);
-
-        //Intent intentList = new Intent(this, MainActivity.class);
     }
 
     @Override

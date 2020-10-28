@@ -11,8 +11,8 @@
         android:id="@+id/road_text_spinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="232dp"
         android:labelFor="@id/road_type_spinner"
         android:text="@string/road_text_string"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
@@ -105,8 +105,10 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
         android:backgroundTint="@color/colorSecondary"
         android:text="@string/buttonText"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tempo_limit_text" />
@@ -115,13 +117,13 @@
         android:id="@+id/fine_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="60dp"
         android:text="@string/fine_text"
         android:textSize="20sp"
         android:visibility="invisible"
-        app:layout_constraintLeft_toLeftOf="@id/tempo_effective_text"
-        app:layout_constraintStart_toStartOf="@+id/road_text_spinner"
-        app:layout_constraintTop_toBottomOf="@id/calculate_button" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_money_rain" />
 
     <TextView
         android:id="@+id/fine_output"

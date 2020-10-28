@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.ViewAnimator;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -34,6 +35,7 @@ public class SpeedingFineCalculator extends AppCompatActivity implements Adapter
     private TextView fineDescription;
     private Spinner tempoLimitSpinner;
     private Spinner roadTypeSpinner;
+    private ViewAnimator calcDivider;
 
     private ArrayAdapter<CharSequence> tempoLimitAdapter;
     ArrayAdapter<CharSequence> roadTypeAdapter;
@@ -51,6 +53,7 @@ public class SpeedingFineCalculator extends AppCompatActivity implements Adapter
         additionalInformation = findViewById(R.id.additional_information);
         fineCurrency = findViewById(R.id.fine_currency);
         fineDescription = findViewById(R.id.fine_description);
+        calcDivider = findViewById(R.id.divider_calculator);
 
         tempoEditText = findViewById(R.id.tempo_effective_input);
         tempoEditText.addTextChangedListener(new TextWatcher() {
@@ -237,6 +240,7 @@ public class SpeedingFineCalculator extends AppCompatActivity implements Adapter
         additionalInformation.setVisibility(View.INVISIBLE);
         fineCurrency.setVisibility(View.INVISIBLE);
         fineDescription.setVisibility(View.INVISIBLE);
+        calcDivider.setVisibility(View.INVISIBLE);
     }
 
     private void displayResults() {
@@ -244,6 +248,7 @@ public class SpeedingFineCalculator extends AppCompatActivity implements Adapter
         fineCurrency.setVisibility(View.VISIBLE);
         fineDescription.setVisibility(View.VISIBLE);
         additionalText.setVisibility(View.VISIBLE);
+        calcDivider.setVisibility(View.VISIBLE);
         if (additionalText.getText() == getString(R.string.raserdelikt)) {
             additionalInformation.setVisibility(View.VISIBLE);
         }

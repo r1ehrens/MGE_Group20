@@ -15,7 +15,7 @@
     <string name="tempo_limit_string">Signalisiert</string>
     <string name="speed_string">Geschwindigkeit</string>
     <string name="unit_string">km/h</string>
-    <string name="fine_text">Busse:</string>
+    <string name="fine_text">Busse</string>
     <string name="currency_unit">CHF</string>
     <string name="speedErrorMessage">Eingabe muss zwischen 0 und 500 sein!</string>
     <string name="verzeigung">+ Verzeigung</string>

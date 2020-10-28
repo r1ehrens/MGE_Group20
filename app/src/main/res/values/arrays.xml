@@ -1,0 +1,36 @@
+<resources>
+    <!-- Reply Preference -->
+    <string-array name="reply_entries">
+        <item>Reply</item>
+        <item>Reply to all</item>
+    </string-array>
+
+    <string-array name="reply_values">
+        <item>reply</item>
+        <item>reply_all</item>
+    </string-array>
+
+    <string-array name="roadTypeArray">
+        <item>Innerorts</item>
+        <item>Ausserorts</item>
+        <item>Autobahn</item>
+    </string-array>
+
+    <string-array name="tempoLimits">
+        <item>30</item>
+        <item>50</item>
+        <item>80</item>
+        <item>120</item>
+    </string-array>
+
+    <string-array name="weekdays">
+        <item>Montag</item>
+        <item>Dienstag</item>
+        <item>Mittwoch</item>
+        <item>Donnerstag</item>
+        <item>Freitag</item>
+        <item>Samstag</item>
+        <item>Sonntag</item>
+    </string-array>
+
+</resources>

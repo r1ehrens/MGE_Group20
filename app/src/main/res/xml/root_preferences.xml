@@ -1,0 +1,32 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory app:title="@string/notification_header">
+
+        <SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:key="@string/notification_enabled_key"
+            android:title="@string/notification_enabled_title" />
+
+        <MultiSelectListPreference
+            android:key="@string/notification_frequency_day_key"
+            android:title="@string/notification_frequency_day_title"
+            android:dependency="@string/notification_enabled_key"
+            android:entries="@array/weekdays"
+            android:entryValues="@array/weekdays"
+            android:defaultValue="@array/weekdays"
+            android:summary="@string/notification_frequency_day_description"
+            android:icon="@drawable/ic_date"
+            />
+
+
+        <ch.ost.group20.speedcamerareminder.timepicker.TimePreference
+            android:key="@string/notification_frequency_time_key"
+            android:title="@string/notification_frequency_time_title"
+            android:defaultValue="@string/notification_frequency_time_default"
+            android:dependency="@string/notification_enabled_key"
+            android:summary="@string/notification_frequency_time_description"
+            android:icon="@drawable/ic_time"/>
+
+    </PreferenceCategory>
+</PreferenceScreen>

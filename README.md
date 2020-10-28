@@ -17,7 +17,6 @@ Damit diese Daten nicht mühsam auf der Website des Kantons gesucht werden müss
 | Verwendung von Notifications 	   | 1 - 2  |
 | Verwendung von Services 		   | 1 - 3  |
 | Integration von Drittkomponenten | 1 - 3  |
-| Sinnvolleles Testing			   | 1 - 3  |
 | **Total**						   | **7 - 26** |
 
 ## Links

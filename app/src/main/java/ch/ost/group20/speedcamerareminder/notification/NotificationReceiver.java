@@ -60,11 +60,7 @@ public class NotificationReceiver extends BroadcastReceiver {
         Log.e("RECEIVER", "START SERVICE JETZT");
         Intent intentService = new Intent(context, NotificationService.class);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            context.startForegroundService(intentService);
+        context.startService(intentService);
 
-        } else {
-            context.startService(intentService);
-        }
     }
 }
